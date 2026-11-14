@@ -1,0 +1,6 @@
+*.pem
+.env
+.env.*
+terraform.tfstate
+terraform.tfstate.*
+.terraform/
