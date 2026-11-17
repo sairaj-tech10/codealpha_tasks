@@ -1,6 +1,4 @@
 
-# Docker Web Server on AWS EC2
-
 ## Project Overview
 A custom Nginx web server deployed using Docker on an AWS EC2 instance.
 
@@ -42,10 +40,14 @@ web-server-docker/
 docker build -t sairaj-web-server:v1 .
 
 ## Run Container
-
-docker run -d \
+sudo docker run -d \
 --name my-web-server \
 -p 80:80 \
+--restart unless-stopped \
+--health-cmd="curl -f http://localhost/ || exit 1" \
+--health-interval=30s \
+--health-timeout=5s \
+--health-retries=3 \
 sairaj-web-server:v1
 
 ## Verify Container
